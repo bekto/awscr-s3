@@ -233,6 +233,13 @@ module Awscr::S3
       Response::PutObjectOutput.from_response(resp)
     end
 
+
+    def copy_object(bucket, object_name : String, headers : Hash(String, String) = Hash(String, String).new)
+      resp = http.put("/#{bucket}/#{URI.encode_www_form(object_name)}", headers)
+
+      Response::PutObjectOutput.from_response(resp)
+    end
+
     # Get the contents of an object in a bucket
     #
     # ```
